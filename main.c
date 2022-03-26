@@ -231,7 +231,7 @@ int decode_MCMD_LinkADRReq(char *fopts_content_local, char link_type)
 		sscanf(fopts_command, "%x", &data_pwr);
 		if((data_pwr&0x0F) < 6 && (data_pwr&0x0F) >= 0)
 		{
-			printf("Data rate: %s\r\n", datarate_array[data_pwr&0x0F]); 
+			printf("Data rate: %s\r\n", datarate_array[(data_pwr&0xF0)>>4]); 
 		}
 		else
 		{
@@ -239,7 +239,7 @@ int decode_MCMD_LinkADRReq(char *fopts_content_local, char link_type)
 		}
 		if((data_pwr&0xF0) < 0xB0 && (data_pwr&0xF0) >= 0x00)
 		{
-			printf("Power: %s\r\n", power_array[(data_pwr&0xF0)>>4]); 
+			printf("Power: %s\r\n", power_array[data_pwr&0x0F]); 
 		}
 		else
 		{
